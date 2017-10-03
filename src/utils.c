@@ -6,10 +6,10 @@
 void mysh_parse_command(const char* command,
                         int *argc, char*** argv)
 {
-	*argv = (char**)malloc(sizeof(char*)*100);
+	*argv = (char**)malloc(sizeof(char*)*8096);
 	int i = 0;
-	char *str = (char*)malloc(sizeof(char)*10000);
-	char *token;
+	char *str = (char*)malloc(sizeof(char)*8096);
+	char *token = (char*)malloc(sizeof(char)*8096);
 	strcpy(str, command);
 	token = strtok(str, " \t\n");
 	if(token==NULL)
@@ -27,5 +27,6 @@ void mysh_parse_command(const char* command,
 	}
 	
 	*argc = i;
-	
+	free(str);
+	free(token);	
 }
