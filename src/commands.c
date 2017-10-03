@@ -26,7 +26,8 @@ int validate_cd_argv(int argc, char** argv) {
 	if(argc==2&&strcmp(argv[0],"cd")==0)
 	{
 		int result = access(argv[1], F_OK);
-		if(result == 0)
+		int result2 = access(argv[1], R_OK);
+		if(result == 0 && result2 == 0)
 		{
 			struct stat buf;
 			stat(argv[1], &buf);
